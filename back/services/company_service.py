@@ -23,6 +23,9 @@ def get_company():
         print(f"Error al conectar a la base de datos: {e}")
 
 def create_company(company:Company):
+     # Validación de campos vacíos
+    if not company.name or not company.img:
+        raise HTTPException(status_code=400, detail="El nombre y la imagen son requeridos")
     engine = create_engine(DATABASE_URL)
 
     try:

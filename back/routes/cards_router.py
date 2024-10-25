@@ -11,7 +11,7 @@ def read_root():
     return(cards)
 
 @router.post("/")
-def users_root(cards:cardModel):
+def create_root(cards:cardModel):
     message = create_cards(cards)
     return (message)
 

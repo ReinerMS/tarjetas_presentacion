@@ -6,6 +6,10 @@ from models.users_model import consultModel
 from queries.users_queries import consult_bd_users
 
 def consult_user(consult:consultModel):
+     # Validación de campos vacíos
+    if not consult.email or not consult.password:
+        raise HTTPException(status_code=400, detail="El email y la contraseña son requeridos")
+    
     engine = create_engine(DATABASE_URL)
 
     try:

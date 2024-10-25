@@ -11,7 +11,7 @@ def read_root():
     return(company)
 
 @router.post("/")
-def read_root(company:Company):
+def create_root(company:Company):
     create_log(logsModel(change = "Creo una compañia", table = "company", email = "rmoras@colonos.com" ))
     message = create_company(company)
     return(message)

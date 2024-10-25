@@ -26,6 +26,15 @@ def get_cards():
 
 
 def create_cards(cards: cardModel):
+
+    # Lista de campos requeridos
+    required_fields = ["name", "lastName", "email", "company", "postName", "phone", "wa", "areaCode"]
+    
+    # Verificar si algún campo obligatorio está vacío
+    for field in required_fields:
+        if not getattr(cards, field):  # getattr obtiene el valor del campo
+            raise HTTPException(status_code=400, detail=f"El campo '{field}' es obligatorio y no puede estar vacío")
+    
     engine = create_engine(DATABASE_URL)
 
     try:
